@@ -87,13 +87,6 @@ app.factory("ComponentService", function(DataGrouperService, PageService, Format
         return formatWithoutFields(component.data);
     }
 
-    var createComponentField = function(registers, component) {
-        if(!component.data.fields) return;
-        var groupers = groupRegister(registers, component.data.fields);
-        var values = createRowField(groupers);
-        return formatFields(values, component.data.fields);
-    }
-
     var createComponentGroup = function(registers, component) {
         if(!component.data.groups) return;
         _.map(component.data.groups, function(group) {
@@ -103,19 +96,70 @@ app.factory("ComponentService", function(DataGrouperService, PageService, Format
         });
     }
 
+
+
+    // TODO: Criar um servico para format; verificar qual o tipo de format.
+    var applyFormat = function(groups, format) {
+        if(!format) return;      
+        var res = [];  
+        var key = format.key;
+        var fields = getFields(_.pluck(format.fields, 'value'));
+        _.map(groups, function(group) {
+            _.map(fields, function(field) {
+                var values = _.pluck(group.vals, field);
+                _.map(values, function(value) {
+                    var obj = angular.copy(group.key); 
+                    obj[key] = value;                   
+                    res.push(obj);
+                });
+            });
+            console.log(group, res);
+        });
+    }
+
+    var createFields = function(registers, componentFields) {
+        if(!componentFields) return;
+        var fields = getFields(_.pluck(componentFields, 'value'));
+        return DataGrouperService.keys(registers, fields);
+        // var values = createRowField(groupers);
+        // return formatFields(values, fields);
+    }
+
+    var createGroups = function(registers, component) {
+        if(!component.data.fields) return registers;
+        var fields = getFields(_.pluck(component.data.fields, 'value'));
+        return DataGrouperService.group(registers, fields);
+    }
+
+    var createComponentField = function(registers, component) {
+        var groups = createGroups(registers, component);
+        applyFormat(groups, component.data.format); // Deve formatar cada registro dos fields acima, conforme sua orientação. Ex. inline ou inblock
+        //createFieldsFormula // Deve acrescentar a cada registro dos fields acima, o field da formula
+
+        var fields = createFields(registers, component.data.fields); // Deve montar a lista agrupada pelos fields
+        // console.log("fields", groups);
+    }
+
     var componentFactory = function(registers, component) {
         if(!component.data) return;
-        if(component.data.groups) {
-            return createComponentGroup(registers, component);  
-        } else if(component.data.fields) {
-            return createComponentField(registers, component);    
+        var data = createComponentField(registers, component);
+        if(data) { 
+            data = createComponentWithoutField(component); 
         }
-        return createComponentWithoutField(component);    
+        return data;
+        
+        // if(!component.data) return;
+        // if(component.data.groups) {
+        //     return createComponentGroup(registers, component);  
+        // } else if(component.data.fields) {
+        //     return createComponentField(registers, component);    
+        // }
+        // return createComponentWithoutField(component);    
     }
 
     var create = function(page, component) {
-        page = PageService.page(page);
-        component.data = componentFactory(page.page, component);
+        // page = PageService.page(page);
+        component.data = componentFactory(page, component);
         return component;
     }
 

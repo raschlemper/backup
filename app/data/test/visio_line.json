@@ -197,37 +197,72 @@
                          "order": 6,
                          "name": "Vencimento",
                          "_id": "555f17bf7d9f9062787ebdcc"
-                     }, {
-                         "selected": true,
-                         "key": [{
-                             "isKey": false,
-                             "type": "number",
-                             "label": "Previsão confirmada",
-                             "filter": [
-                                 "currency",
-                                 "R$ "
-                             ],
-                             "field": "previsao_confirmado",
-                             "_id": "5567047ca0c28d0228cb09ca"
-                         }],
-                         "value": [{
-                             "isKey": false,
-                             "type": "number",
-                             "label": "Previsão confirmada",
-                             "filter": [
-                                 "currency",
-                                 "R$ "
-                             ],
-                             "field": "previsao_confirmado",
-                             "_id": "5567047ca0c28d0228cb09ca"
-                         }],
-                         "__v": 0,
-                         "expression": "<%= previsao_confirmado %>",
-                         "description": "Campo refere-se à instituição de ensino registrada no sistema.",
-                         "order": 8,
-                         "name": "Previsão confirmada",
-                         "_id": "555f17bf7d9f9062787ebdce"
                      }],
+                     "format": {
+                         "name": "Valor",
+                         "key": "cd_valor",
+                         "fields": [{
+                             "selected": true,
+                             "key": [{
+                                 "isKey": false,
+                                 "type": "number",
+                                 "label": "Previsão não confirmada",
+                                 "filter": [
+                                     "currency",
+                                     "R$ "
+                                 ],
+                                 "field": "previsao_nao_confirmado",
+                                 "_id": "5567047ca0c28d0228cb09ca"
+                             }],
+                             "value": [{
+                                 "isKey": false,
+                                 "type": "number",
+                                 "label": "Previsão não confirmada",
+                                 "filter": [
+                                     "currency",
+                                     "R$ "
+                                 ],
+                                 "field": "previsao_nao_confirmado",
+                                 "_id": "5567047ca0c28d0228cb09ca"
+                             }],
+                             "__v": 0,
+                             "expression": "<%= previsao_nao_confirmado %>",
+                             "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+                             "order": 8,
+                             "name": "Previsão confirmada",
+                             "_id": "555f17bf7d9f9062787ebdce"
+                         }, {
+                             "selected": true,
+                             "key": [{
+                                 "isKey": false,
+                                 "type": "number",
+                                 "label": "Previsão confirmada",
+                                 "filter": [
+                                     "currency",
+                                     "R$ "
+                                 ],
+                                 "field": "previsao_confirmado",
+                                 "_id": "5567047ca0c28d0228cb09ca"
+                             }],
+                             "value": [{
+                                 "isKey": false,
+                                 "type": "number",
+                                 "label": "Previsão confirmada",
+                                 "filter": [
+                                     "currency",
+                                     "R$ "
+                                 ],
+                                 "field": "previsao_confirmado",
+                                 "_id": "5567047ca0c28d0228cb09ca"
+                             }],
+                             "__v": 0,
+                             "expression": "<%= previsao_confirmado %>",
+                             "description": "Campo refere-se à instituição de ensino registrada no sistema.",
+                             "order": 8,
+                             "name": "Previsão confirmada",
+                             "_id": "555f17bf7d9f9062787ebdce"
+                         }]
+                     },
                      "formulas": [{
                          "field": {
                              "selected": true,
@@ -329,104 +364,6 @@
              "type": "details",
              "name": "Movimentos",
              "_id": "555b24e0a209f0690f4c7fbb"
-         }, {
-             "components": [{
-                 "data": {
-                     "fields": [{
-                         "selected": true,
-                         "key": [{
-                             "isKey": true,
-                             "type": "codigo",
-                             "label": "Código do aluno",
-                             "field": "cd_aluno",
-                             "_id": "55670754fb32cea142177477"
-                         }],
-                         "value": [{
-                             "isKey": false,
-                             "type": "text",
-                             "label": "Nome do aluno",
-                             "field": "nm_aluno",
-                             "_id": "55670754fb32cea142177478"
-                         }],
-                         "__v": 0,
-                         "expression": "<%= nm_aluno %>",
-                         "description": "Campo refere-se à instituição de ensino registrada no sistema.",
-                         "order": 5,
-                         "name": "Aluno",
-                         "_id": "555f17bf7d9f9062787ebdcb"
-                     }],
-                     "formulas": [{
-                         "field": {
-                             "selected": true,
-                             "formula": "sum",
-                             "key": [{
-                                 "isKey": false,
-                                 "type": "number",
-                                 "label": "Previsão confirmada",
-                                 "filter": [
-                                     "currency",
-                                     "R$ "
-                                 ],
-                                 "field": "previsao_confirmado",
-                                 "_id": "5567047ca0c28d0228cb09ca"
-                             }],
-                             "value": [{
-                                 "isKey": false,
-                                 "type": "number",
-                                 "label": "Previsão confirmada",
-                                 "filter": [
-                                     "currency",
-                                     "R$ "
-                                 ],
-                                 "field": "previsao_confirmado",
-                                 "_id": "5567047ca0c28d0228cb09ca"
-                             }]
-                         },
-                         "groups": [{
-                             "selected": true,
-                             "key": [{
-                                 "isKey": true,
-                                 "type": "codigo",
-                                 "label": "Código do aluno",
-                                 "field": "cd_aluno",
-                                 "_id": "55670754fb32cea142177477"
-                             }],
-                             "value": [{
-                                 "isKey": false,
-                                 "type": "text",
-                                 "label": "Nome do aluno",
-                                 "field": "nm_aluno",
-                                 "_id": "55670754fb32cea142177478"
-                             }],
-                             "__v": 0,
-                             "expression": "<%= nm_aluno %>",
-                             "description": "Campo refere-se à instituição de ensino registrada no sistema.",
-                             "order": 5,
-                             "name": "Aluno",
-                             "_id": "555f17bf7d9f9062787ebdcb"
-                         }],
-                         "__v": 0,
-                         "expression": "<%= previsao_confirmado %>",
-                         "description": "Campo refere-se à instituição de ensino registrada no sistema.",
-                         "order": 8,
-                         "name": "Previsão confirmada",
-                         "_id": "555f17bf7d9f9062787ebdce"
-                     }]
-                 },
-                 "type": "table",
-                 "offsetLine": 1,
-                 "line": 25,
-                 "column": 12,
-                 "name": "footer",
-                 "label": "Rodapé",
-                 "_id": "555f88eebe6354bb237607f0"
-             }],
-             "__v": 0,
-             "column": 12,
-             "line": 35,
-             "type": "footer",
-             "name": "Saldos",
-             "_id": "555b24e0a209f0690f4c7fbc"
          }],
          "configuration": {
              "preview": {
