@@ -1,4 +1,4 @@
-app.factory("LinkService", function(DataGrouperService, FormatterService) { 
+app.factory("LinkService", function(DataGrouperService, ConvertService) { 
 
     var _link = {
         selected: [],
@@ -87,7 +87,7 @@ app.factory("LinkService", function(DataGrouperService, FormatterService) {
         return _.map(data, function(item, i) {
             var list = formatLinks(item.vals, names, index + 1);
             var obj = {
-                'item': FormatterService.formatField(item.key, names[index])
+                'item': ConvertService.formatField(item.key, names[index])
             };
             if (list) {
                 _.extend(obj, {
@@ -99,7 +99,6 @@ app.factory("LinkService", function(DataGrouperService, FormatterService) {
     }
 
     var createLink = function(index) {
-        // _link.selected = [];
         createListValueSelected(_link.values, 0, index);
         createLists();
         createLinks();

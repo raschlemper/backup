@@ -1,5 +1,4 @@
 app.factory("ReportNewService", function(DataGrouperService, ComponentService, LinkService, PageService, 
-    FormatterService,
     ReportPageService, ReportComponentService, ReportFormatterService) {
 
     var report = {};
@@ -89,73 +88,7 @@ app.factory("ReportNewService", function(DataGrouperService, ComponentService, L
         var fields = getValueFields(filters);
         return LinkService.links(registers, filters, fields);
     }
-
-
-    /* *************************** ALTERAR **************************** */
-
-    var findComponentByCode = function(code) {
-        var comp = _.find(report.components, function(component){ 
-            return _.isEqual(component.code, code);
-        });
-        return comp;
-    }
-
-    var setComponent = function(layout, indexContainer, indexComponent, componentReport) {
-        if(!componentReport.rows) return;
-        layout.containers[indexContainer].components[indexComponent].data = componentReport.rows;
-    }
-
-    var bindComponents = function(layout) {
-        _.map(layout.containers, function(container, indexContainer) {
-            _.map(container.components, function(component, indexComponent) {               
-                componentReport = findComponentByCode(component._id);
-                setComponent(layout, indexContainer, indexComponent, componentReport);
-            });
-        });
-    }
-
-    var createComponentWithoutField = function(registers, component) {
-        component['values'] = ReportComponentService.createComponentWithoutField(registers, component);
-        component['rows'] = ReportFormatterService.formatWithoutFields(component);
-        return component;
-    }
-
-    var createComponentField = function(registers, component) {
-        component['values'] = ReportComponentService.createComponentField(registers, component);
-        component['rows'] = ReportFormatterService.formatFields(component);
-        return component;
-    }
-
-    var createComponentGroup = function(registers, component) {
-        component['values'] = ReportComponentService.createComponentGroup(registers, component);
-        component['rows'] = ReportFormatterService.formatGroups(component);
-        return component;
-    }
-
-    var componentFactory = function(registers, component) {
-        if (!component.data) {
-            return;
-        }
-        if (component.data.groups) {
-            return createComponentGroup(registers, component);
-        }
-        if (component.data.fields) {
-            return createComponentField(registers, component);
-        }
-        return createComponentWithoutField(registers, component);
-    }
-
-    var createComponent = function(registers, components) {
-        return _.map(components, function(component) {
-            return componentFactory(registers, component);
-        });
-    }
-
-
-
-
-
-
+    
     var formatComponents = function(containers, page) {
         return _.map(containers, function(container) {                
             return { "components" : _.map(container.components, function(component) {
@@ -172,10 +105,6 @@ app.factory("ReportNewService", function(DataGrouperService, ComponentService, L
 
     var pages = function(registers, visio, selected) {
         return PageService.pages(selected, registers);
-        // formatPageField(visio.layout.containers);
-        // var filters = getReportFilter(visio.layout);
-        // report.components = createComponent(filters, components);
-        // bindComponents(visio.layout);
     }
 
     return {

@@ -1,4 +1,4 @@
-app.factory("PageService", function(DataGrouperService, FormatterService) { 
+app.factory("PageService", function(DataGrouperService) { 
 
     var _page = {
         values: [],
